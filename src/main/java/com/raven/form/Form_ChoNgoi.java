@@ -176,7 +176,7 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(Sodochongoi3, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Sodochongoivip, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                .addComponent(Sodochongoivip, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(131, 131, 131))
         );
     }// </editor-fold>//GEN-END:initComponents

@@ -53,7 +53,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="Sodochongoi3" min="-2" pref="301" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="Sodochongoivip" pref="74" max="32767" attributes="0"/>
+              <Component id="Sodochongoivip" min="-2" pref="74" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
           </Group>
       </Group>
