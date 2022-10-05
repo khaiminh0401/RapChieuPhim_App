@@ -5,7 +5,7 @@
 package com.raven.main;
 
 import com.raven.sendEmail.CheckMail;
-import com.raven.sendEmail.email;
+//import com.raven.sendEmail.email;
 
 /**
  *
@@ -18,7 +18,7 @@ public class DangKy extends javax.swing.JFrame {
      */
     public DangKy() {
         initComponents();
-        email.GuiEmail(txtEmail.getText());
+//        email.GuiEmail(txtEmail.getText());
     }
 
     /**

@@ -5,7 +5,7 @@
 package com.raven.SendEmail;
 
 import javax.mail.*;
-import javax.activation.*;
+//import javax.activation.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;

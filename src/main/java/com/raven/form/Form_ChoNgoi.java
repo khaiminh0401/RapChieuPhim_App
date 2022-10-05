@@ -62,14 +62,14 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
 
-                    if (e.getComponent().getBackground().equals(Color.WHITE)) {
+                    if (e.getComponent().getBackground().equals(Color.YELLOW)) {
                         if (Character.compare(s.getTenGhe().charAt(0), 'H') == 0) {
                             e.getComponent().setBackground(Color.PINK);
                         } else {
                             e.getComponent().setBackground(Color.GREEN);
                         }
                     } else {
-                        e.getComponent().setBackground(Color.WHITE);
+                        e.getComponent().setBackground(Color.YELLOW);
                     }
                 }
             });
@@ -87,7 +87,7 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
                 ghe2.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        if (e.getComponent().getBackground().equals(Color.WHITE)) {
+                        if (e.getComponent().getBackground().equals(Color.YELLOW)) {
                             if (Character.compare(s.getTenGhe().charAt(0), 'H') == 0) {
                                 e.getComponent().setBackground(Color.PINK);
                             } else if (Character.compare(s.getTenGhe().charAt(0), 'J') == 0) {
@@ -96,7 +96,7 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
                                 e.getComponent().setBackground(Color.GREEN);
                             }
                         } else {
-                            e.getComponent().setBackground(Color.WHITE);
+                            e.getComponent().setBackground(Color.YELLOW);
                         }
                     }
                 });
@@ -140,11 +140,14 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
         });
 
         Sodochongoi3.setBackground(new java.awt.Color(255, 255, 255));
+        Sodochongoi3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Sodochongoi3.setFocusCycleRoot(true);
+        Sodochongoi3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Sodochongoi3.setPreferredSize(new java.awt.Dimension(3, 3));
         Sodochongoi3.setLayout(new java.awt.GridLayout(8, 12, 1, 1));
 
         Sodochongoivip.setBackground(new java.awt.Color(255, 255, 255));
+        Sodochongoivip.setPreferredSize(new java.awt.Dimension(3, 3));
         Sodochongoivip.setLayout(new java.awt.GridLayout(1, 14, 1, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -159,12 +162,12 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
                             .addComponent(jLabel1)
                             .addComponent(cboPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addGap(66, 66, 66)
                         .addComponent(Sodochongoi3, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Sodochongoivip, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(179, Short.MAX_VALUE))
+                        .addGap(32, 32, 32)
+                        .addComponent(Sodochongoivip, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,10 +177,10 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cboPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Sodochongoi3, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Sodochongoivip, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(131, 131, 131))
+                .addComponent(Sodochongoi3, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Sodochongoivip, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
         );
     }// </editor-fold>//GEN-END:initComponents
 
