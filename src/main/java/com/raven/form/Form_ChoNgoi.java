@@ -52,6 +52,9 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
             i++;
             if (Character.compare(s.getTenGhe().charAt(0), 'D') == 0) {
                 cl = Color.red;
+            } else if (Character.compare(s.getTenGhe().charAt(0), 'E') == 0) {
+                cl = Color.red;
+
             } else if (Character.compare(s.getTenGhe().charAt(0), 'H') == 0) {
                 cl = Color.PINK;
             } else {
@@ -62,10 +65,14 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
             ghe.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                   
+
                     if (e.getComponent().getBackground().equals(Color.GRAY)) {
                         if (Character.compare(s.getTenGhe().charAt(0), 'D') == 0) {
                             e.getComponent().setBackground(Color.RED);
+
+                        } else if (Character.compare(s.getTenGhe().charAt(0), 'E') == 0) {
+                            e.getComponent().setBackground(Color.RED);
+
                         } else if (Character.compare(s.getTenGhe().charAt(0), 'H') == 0) {
                             e.getComponent().setBackground(Color.PINK);
                         } else {

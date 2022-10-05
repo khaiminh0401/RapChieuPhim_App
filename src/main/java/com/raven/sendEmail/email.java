@@ -27,8 +27,8 @@ public class email {
     }
 
     public static void GuiEmail(String toEmail) {
-        final String username = "thanhson9112@gmail.com";
-        final String password = "oqboegyladaeyitm";
+        final String username = "ngobakha2t4@gmail.com";
+        final String password = "mdnppklxnsamshgr";
 //        final String ToEmail = XacNhanEmail.getEmail();
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -51,7 +51,7 @@ public class email {
                     InternetAddress.parse(toEmail)
             );
             message.setSubject("QUẢN LÝ NHÀ TRỌ_ĐỔI MẬT KHẨU!");
-            message.setText("Ðây là mã xác thuc: " + RanDom() + "\n Vui lòng nhap de xac minh");
+            message.setText("Ðây là mã xác thuc: " + RanDom() + "\n Vui lòng nhập để xác minh");
 
             Transport.send(message);
 
