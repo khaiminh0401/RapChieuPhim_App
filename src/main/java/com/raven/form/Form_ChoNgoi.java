@@ -10,7 +10,6 @@ import com.raven.model.ChiTietGhe;
 import com.raven.model.Model_Ghe;
 import com.raven.model.PhongChieu;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -42,20 +41,17 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
         });
 //        SodoGhe();
     }
+    List<ChiTietGhe> List;
+    List<ChiTietGhe> List2;
+    Color cl;
 
     public void SodoGhe() {
-        Color cl;
-        int i = 0;
 
-        List<ChiTietGhe> List = ListGhe.stream().filter(s -> s.getMaPhong().equalsIgnoreCase(ListPhong.get(cboPhong.getSelectedIndex()).getMaPhong())).limit(108).collect(Collectors.toList());
+        List = ListGhe.stream().filter(s -> s.getMaPhong().equalsIgnoreCase(ListPhong.get(cboPhong.getSelectedIndex()).getMaPhong())).limit(96).collect(Collectors.toList());
+
         for (ChiTietGhe s : List) {
-            i++;
-            if (Character.compare(s.getTenGhe().charAt(0), 'D') == 0) {
-                cl = Color.red;
-            } else if (Character.compare(s.getTenGhe().charAt(0), 'E') == 0) {
-                cl = Color.red;
 
-            } else if (Character.compare(s.getTenGhe().charAt(0), 'H') == 0) {
+            if (Character.compare(s.getTenGhe().charAt(0), 'H') == 0) {
                 cl = Color.PINK;
             } else {
                 cl = Color.GREEN;
@@ -66,29 +62,52 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
 
-                    if (e.getComponent().getBackground().equals(Color.GRAY)) {
-                        if (Character.compare(s.getTenGhe().charAt(0), 'D') == 0) {
-                            e.getComponent().setBackground(Color.RED);
-
-                        } else if (Character.compare(s.getTenGhe().charAt(0), 'E') == 0) {
-                            e.getComponent().setBackground(Color.RED);
-
-                        } else if (Character.compare(s.getTenGhe().charAt(0), 'H') == 0) {
+                    if (e.getComponent().getBackground().equals(Color.WHITE)) {
+                        if (Character.compare(s.getTenGhe().charAt(0), 'H') == 0) {
                             e.getComponent().setBackground(Color.PINK);
                         } else {
                             e.getComponent().setBackground(Color.GREEN);
                         }
                     } else {
-                        e.getComponent().setBackground(Color.GRAY);
+                        e.getComponent().setBackground(Color.WHITE);
                     }
                 }
             });
-            Sodochongoi3.add(ghe);
 
+            Sodochongoi3.add(ghe);
+        }
+
+        if (cboPhong.getSelectedIndex() >= 5) {
+            List2 = ListGhe.stream().filter(s -> s.getMaPhong().equalsIgnoreCase(ListPhong.get(cboPhong.getSelectedIndex()).getMaPhong())).skip(96).collect(Collectors.toList());
+            for (ChiTietGhe s : List2) {
+                if (Character.compare(s.getTenGhe().charAt(0), 'J') == 0) {
+                    cl = Color.RED;
+                }
+                Model_Ghe ghe2 = new Model_Ghe(cl, s.getTenGhe());
+                ghe2.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        if (e.getComponent().getBackground().equals(Color.WHITE)) {
+                            if (Character.compare(s.getTenGhe().charAt(0), 'H') == 0) {
+                                e.getComponent().setBackground(Color.PINK);
+                            } else if (Character.compare(s.getTenGhe().charAt(0), 'J') == 0) {
+                                e.getComponent().setBackground(Color.RED);
+                            } else {
+                                e.getComponent().setBackground(Color.GREEN);
+                            }
+                        } else {
+                            e.getComponent().setBackground(Color.WHITE);
+                        }
+                    }
+                });
+                Sodochongoivip.add(ghe2);
+            }
         }
 
         Sodochongoi3.repaint();
         Sodochongoi3.revalidate();
+        Sodochongoivip.repaint();
+        Sodochongoivip.repaint();
     }
 
     /**
@@ -103,6 +122,9 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         cboPhong = new javax.swing.JComboBox<>();
         Sodochongoi3 = new javax.swing.JPanel();
+        Sodochongoivip = new javax.swing.JPanel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setText("Tên Phòng");
 
@@ -117,22 +139,32 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
             }
         });
 
-        Sodochongoi3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Sodochongoi3.setBackground(new java.awt.Color(255, 255, 255));
         Sodochongoi3.setFocusCycleRoot(true);
         Sodochongoi3.setPreferredSize(new java.awt.Dimension(3, 3));
-        Sodochongoi3.setLayout(new java.awt.GridLayout(9, 12, 1, 1));
+        Sodochongoi3.setLayout(new java.awt.GridLayout(8, 12, 1, 1));
+
+        Sodochongoivip.setBackground(new java.awt.Color(255, 255, 255));
+        Sodochongoivip.setLayout(new java.awt.GridLayout(1, 14, 1, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(cboPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Sodochongoi3, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(cboPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(Sodochongoi3, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Sodochongoivip, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,9 +173,11 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cboPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(Sodochongoi3, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Sodochongoivip, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                .addGap(131, 131, 131))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -155,6 +189,7 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
     private void cboPhongItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPhongItemStateChanged
         // TODO add your handling code here:
         Sodochongoi3.removeAll();
+        Sodochongoivip.removeAll();
         SodoGhe();
 
     }//GEN-LAST:event_cboPhongItemStateChanged
@@ -162,6 +197,7 @@ public class Form_ChoNgoi extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Sodochongoi3;
+    private javax.swing.JPanel Sodochongoivip;
     private javax.swing.JComboBox<String> cboPhong;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
