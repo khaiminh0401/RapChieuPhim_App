@@ -68,9 +68,9 @@ public class Main extends javax.swing.JFrame {
                     setForm(new Form_KhachHang());
                 } else if (index == 2) {
                     setForm(new Form_QuanLyLichChieu());
+//                } else if (index == 3) {
+//                    setForm(new Form_Phim());
                 } else if (index == 3) {
-                    setForm(new Form_Phim());
-                } else if (index == 4) {
                     setForm(new Form_Topping());
                 } else if (index == 5) {
                     setForm(new Form_ChonPhim());

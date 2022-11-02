@@ -81,6 +81,7 @@ public class Form_Topping extends javax.swing.JPanel {
         for (Topping tp : listTopping) {
             mt.setBorder(new LineBorder(Color.GRAY, 4, true));
             mt = new Model_topping(tp.getTenTopping(), tp.getSoLuongDangCo(), tp.getMaTopping());
+//            mt.setLocation(10, 10);
             jPanel3.add(mt);
             mt.addMouseListener(new MouseAdapter() {
                 @Override
@@ -140,7 +141,7 @@ public class Form_Topping extends javax.swing.JPanel {
 
         btnTimKiem1.setBackground(new java.awt.Color(102, 51, 0));
         btnTimKiem1.setForeground(new java.awt.Color(242, 242, 242));
-        btnTimKiem1.setText("Chọn Anh");
+        btnTimKiem1.setText("Chọn Ảnh");
         btnTimKiem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiem1ActionPerformed(evt);
@@ -248,10 +249,12 @@ public class Form_Topping extends javax.swing.JPanel {
                                 .addGap(0, 12, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
