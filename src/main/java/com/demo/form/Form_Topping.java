@@ -78,10 +78,9 @@ public class Form_Topping extends javax.swing.JPanel {
         dao = new ToppingDao();
         listTopping.addAll(dao.Select());
         mt = new Model_topping();
+        System.out.println(listTopping.size());
         for (Topping tp : listTopping) {
-            mt.setBorder(new LineBorder(Color.GRAY, 4, true));
             mt = new Model_topping(tp.getTenTopping(), tp.getSoLuongDangCo(), tp.getMaTopping());
-//            mt.setLocation(10, 10);
             jPanel3.add(mt);
             mt.addMouseListener(new MouseAdapter() {
                 @Override
@@ -92,7 +91,9 @@ public class Form_Topping extends javax.swing.JPanel {
                     lblHinh.setIcon(resizeImage("src/main/resources/topping/" + tp.getMaTopping() + ".jpg"));
                 }
             });
+            mt.setBorder(new LineBorder(Color.GRAY, 4, true));
         }
+        
         jPanel3.repaint();
         jPanel3.revalidate();
     }
@@ -126,11 +127,6 @@ public class Form_Topping extends javax.swing.JPanel {
         btnXoa = new javax.swing.JButton();
         btnCapNhat = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        btn1 = new javax.swing.JButton();
-        btn2 = new javax.swing.JButton();
-        btn3 = new javax.swing.JButton();
-        btn4 = new javax.swing.JButton();
         lblHinh = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
@@ -181,29 +177,7 @@ public class Form_Topping extends javax.swing.JPanel {
             }
         });
 
-        jPanel3.setLayout(new java.awt.GridLayout(1, 3, 0, 5));
-
-        jPanel4.setBackground(new java.awt.Color(255, 255, 204));
-
-        btn1.setBackground(new java.awt.Color(102, 51, 0));
-        btn1.setForeground(new java.awt.Color(242, 242, 242));
-        btn1.setText("1");
-        jPanel4.add(btn1);
-
-        btn2.setBackground(new java.awt.Color(102, 51, 0));
-        btn2.setForeground(new java.awt.Color(242, 242, 242));
-        btn2.setText("2");
-        jPanel4.add(btn2);
-
-        btn3.setBackground(new java.awt.Color(102, 51, 0));
-        btn3.setForeground(new java.awt.Color(242, 242, 242));
-        btn3.setText("3");
-        jPanel4.add(btn3);
-
-        btn4.setBackground(new java.awt.Color(102, 51, 0));
-        btn4.setForeground(new java.awt.Color(242, 242, 242));
-        btn4.setText("4");
-        jPanel4.add(btn4);
+        jPanel3.setLayout(new java.awt.GridLayout(0, 4, 15, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -212,48 +186,41 @@ public class Form_Topping extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(198, 198, 198)
-                                .addComponent(btnTimKiem1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(46, 46, 46)
-                                        .addComponent(btnTimKiem))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblHinh, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblTenTopping)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTenTopping))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblSoLuong)
-                                .addGap(34, 34, 34)
-                                .addComponent(txtSoLuong))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblMaTopping)
-                                .addGap(20, 20, 20)
-                                .addComponent(txtMaTopping))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnThem)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnXoa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCapNhat)
-                                .addGap(0, 12, Short.MAX_VALUE))))
+                        .addGap(198, 198, 198)
+                        .addComponent(btnTimKiem1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(btnTimKiem))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblHinh, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnThem)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnXoa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCapNhat)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMaTopping)
+                            .addComponent(lblTenTopping)
+                            .addComponent(lblSoLuong))
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSoLuong)
+                            .addComponent(txtMaTopping)
+                            .addComponent(txtTenTopping))))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -289,11 +256,9 @@ public class Form_Topping extends javax.swing.JPanel {
                             .addComponent(btnThem)
                             .addComponent(btnXoa)
                             .addComponent(btnCapNhat))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(227, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -304,9 +269,9 @@ public class Form_Topping extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -344,10 +309,6 @@ public class Form_Topping extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn1;
-    private javax.swing.JButton btn2;
-    private javax.swing.JButton btn3;
-    private javax.swing.JButton btn4;
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
@@ -355,7 +316,6 @@ public class Form_Topping extends javax.swing.JPanel {
     private javax.swing.JButton btnXoa;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblHinh;
     private javax.swing.JLabel lblMaTopping;
     private javax.swing.JLabel lblSoLuong;
