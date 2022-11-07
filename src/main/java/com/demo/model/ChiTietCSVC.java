@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CoSoVatChat {
+public class ChiTietCSVC {
     private String macsvc;
-    private String tencsvc;
-    private String hinh;
+    private String maphong;
+    private int soluong;
 }

@@ -4,6 +4,7 @@
  */
 package com.raven.main;
 
+import com.demo.form.Form_ChonChiNhanh;
 import com.raven.DAO.NhanVienDao;
 import com.raven.helper.ThongBao;
 import com.raven.model.NhanVien;
@@ -134,6 +135,7 @@ dao = new NhanVienDao();
         );
 
         jPanel1.setBackground(new java.awt.Color(242, 239, 202));
+        jPanel1.setOpaque(false);
 
         lblMK.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblMK.setText("Mật khẩu ");
@@ -233,9 +235,11 @@ dao = new NhanVienDao();
                 } catch (IOException ex) {
                     Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                Main main = new Main();
+//                Main main = new Main();
                 NhanVienDao.setMaNV(s.getMaNV());
-                main.show();
+                Form_ChonChiNhanh cn = new Form_ChonChiNhanh();
+                cn.show();
+//                main.show();
                 this.dispose();
                 return;
             }

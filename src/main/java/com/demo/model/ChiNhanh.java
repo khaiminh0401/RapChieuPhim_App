@@ -10,13 +10,14 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author hohoa
+ * @author Daokh
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class CoSoVatChat {
-    private String macsvc;
-    private String tencsvc;
-    private String hinh;
+@AllArgsConstructor
+public class ChiNhanh {
+    private String MaCN;
+    private String TenCN;
+    private String DiaChi;
+    private String SoDT;
 }
