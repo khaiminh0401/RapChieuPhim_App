@@ -16,7 +16,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CoSoVatChat {
+    private String tencn;
+    private String tenphong;
     private String macsvc;
     private String tencsvc;
     private String hinh;
+    private int soluong;
+
+    public CoSoVatChat(String tencn, String tenphong, String tencsvc, int soluong) {
+        this.tencn = tencn;
+        this.tenphong = tenphong;
+        this.tencsvc = tencsvc;
+        this.soluong = soluong;
+    }
+    
 }

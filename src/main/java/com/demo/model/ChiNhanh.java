@@ -20,4 +20,5 @@ public class ChiNhanh {
     private String TenCN;
     private String DiaChi;
     private String SoDT;
+
 }

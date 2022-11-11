@@ -5,6 +5,7 @@
  */
 package com.raven.main;
 
+import com.demo.form.Form_CSVC;
 import com.raven.DAO.NhanVienDao;
 import com.raven.DAO.PhongDao;
 import com.raven.event.EventMenuSelected;
@@ -94,7 +95,7 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 0) {
-                    setForm(new Form_Home());
+                    setForm(new Form_CSVC());
                 } else if (index == 1) {
                     setForm(new Form_KhachHang());
                 } else if (index == 2) {

@@ -4,19 +4,88 @@
  */
 package com.demo.form;
 
+import com.demo.DAO.ChiNhanhDao;
+import com.demo.DAO.CoSoVatChatDao;
+import com.demo.model.ChiNhanh;
+import com.demo.model.CoSoVatChat;
+import com.raven.DAO.PhongDao;
+import com.raven.model.PhongChieu;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author hohoa
  */
 public class Form_CSVC extends javax.swing.JPanel {
 
+    CoSoVatChat csvc;
+    ChiNhanh cn;
+    PhongChieu phong;
+    
+    CoSoVatChatDao csvcDAO;
+    ChiNhanhDao cnDAO;
+    PhongDao phongDAO;
+    
+    List<CoSoVatChat> csvc_list;
+    List<ChiNhanh> cn_list;
+    List<PhongChieu> phong_list;
+    
+    DefaultTableModel tblModel = new DefaultTableModel();
+    DefaultComboBoxModel cboModel = new DefaultComboBoxModel();
     /**
      * Creates new form Form_CSVC
      */
     public Form_CSVC() {
         initComponents();
+        csvcDAO = new CoSoVatChatDao();
+        cnDAO = new ChiNhanhDao();
+        phongDAO = new PhongDao();
+        
+        csvc_list = new ArrayList<>();
+        cn_list = new ArrayList<>();
+        phong_list = new ArrayList<>();
+        
+        fillToTable();
+        fillToCbxChiNhanh();
+        fillToCbxPhong();
     }
 
+    public void fillToTable() {
+        tblModel = (DefaultTableModel) tblCoSoVatChat.getModel();
+        csvc_list = csvcDAO.SelectAll();
+        tblModel.setRowCount(0);
+        csvc_list.stream().forEach(c -> {
+            Object[] row = new Object[]{c.getTencn(), c.getTenphong(), c.getTencsvc(), c.getSoluong()};
+            tblModel.addRow(row);
+        });
+    }
+    
+    public void fillToCbxChiNhanh() {
+        cboModel = (DefaultComboBoxModel) cboChiNhanh.getModel();
+        cboModel.removeAllElements();
+        cn_list = cnDAO.select();
+        
+        cn_list.stream().forEach(cn -> {
+            cboChiNhanh.addItem(cn.getTenCN());
+        });
+    }
+    
+    public void fillToCbxPhong() {
+        cboModel = (DefaultComboBoxModel) cboPhong.getModel();
+        cboModel.removeAllElements();
+        phong_list = phongDAO.Select();
+        
+        phong_list.stream().forEach(p -> {
+            cboPhong.addItem(p.getTenPhong());
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,48 +96,58 @@ public class Form_CSVC extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cboChiNhanh = new javax.swing.JComboBox<>();
+        cboPhong = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtMaCSVC = new javax.swing.JTextField();
+        txtTenCSVC = new javax.swing.JTextField();
+        txtSoLuong = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        tblCoSoVatChat = new javax.swing.JTable();
+        btnThem = new javax.swing.JButton();
+        btnCapNhap = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã chi nhánh", " " }));
+        cboChiNhanh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên chi nhánh" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã phòng", " " }));
+        cboPhong.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên phòng" }));
 
-        jLabel1.setText("Tên");
+        jLabel1.setText("Mã CSVC");
 
-        jLabel2.setText("Số lượng");
+        jLabel2.setText("Tên CSVC");
+
+        jLabel3.setText("Số lượng");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cboChiNhanh, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(cboPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtMaCSVC, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                                    .addComponent(txtTenCSVC)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-                            .addComponent(jTextField2))))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(39, 39, 39))
         );
         jPanel1Layout.setVerticalGroup(
@@ -76,20 +155,24 @@ public class Form_CSVC extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboChiNhanh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaCSVC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTenCSVC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCoSoVatChat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -100,11 +183,21 @@ public class Form_CSVC extends javax.swing.JPanel {
                 "Chi nhánh", "Rạp", "Tên CSVC", "Số lượng"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCoSoVatChat);
 
-        jButton1.setText("Thêm");
+        btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Cập nhật");
+        btnCapNhap.setText("Cập nhật");
+        btnCapNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhapActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -122,9 +215,9 @@ public class Form_CSVC extends javax.swing.JPanel {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(118, 118, 118)
-                                .addComponent(jButton1)
+                                .addComponent(btnThem)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2)))
+                                .addComponent(btnCapNhap)))
                         .addGap(0, 16, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -133,28 +226,74 @@ public class Form_CSVC extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(btnThem)
+                    .addComponent(btnCapNhap))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+        String maphong;
+        
+        csvc = new CoSoVatChat();
+        phong = new PhongChieu();
+
+        csvc.setMacsvc(txtMaCSVC.getText());
+        csvc.setTencsvc(txtTenCSVC.getText());
+        phong.setMaPhong(phong_list.get(cboPhong.getSelectedIndex()).getMaPhong());
+        csvc.setSoluong(Integer.parseInt(txtSoLuong.getText()));
+        
+        maphong = phong.getMaPhong();
+        
+        csvcDAO.Insert(csvc.getMacsvc(), csvc.getTencsvc(), csvc.getMacsvc() + ".png");
+        csvcDAO.InsertCTCSVC(csvc.getMacsvc(), maphong, csvc.getSoluong());
+        
+        fillToTable();
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnCapNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhapActionPerformed
+        try {
+            // TODO add your handling code here:
+            String maphong;
+            String macsvc = txtMaCSVC.getText();
+            String tencsvc = txtTenCSVC.getText();
+            int soluong = Integer.parseInt(txtSoLuong.getText());
+            
+            csvc = new CoSoVatChat();
+            phong = new PhongChieu();
+            
+            
+            phong.setMaPhong(phong_list.get(cboPhong.getSelectedIndex()).getMaPhong());
+            csvc.setSoluong(Integer.parseInt(txtSoLuong.getText()));
+            
+            maphong = phong.getMaPhong();
+            
+            csvcDAO.Update(macsvc, tencsvc, macsvc + ".png");
+            csvcDAO.UpdateCTCSVC(macsvc, maphong, soluong);
+        } catch (SQLException ex) {
+            Logger.getLogger(Form_CSVC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCapNhapActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton btnCapNhap;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JComboBox<String> cboChiNhanh;
+    private javax.swing.JComboBox<String> cboPhong;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tblCoSoVatChat;
+    private javax.swing.JTextField txtMaCSVC;
+    private javax.swing.JTextField txtSoLuong;
+    private javax.swing.JTextField txtTenCSVC;
     // End of variables declaration//GEN-END:variables
 }
